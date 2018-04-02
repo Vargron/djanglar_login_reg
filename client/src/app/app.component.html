@@ -1,0 +1,28 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div >
+  <h1>django login-reg seed
+    
+  </h1>
+  <p>{{cur_user|json}}</p>
+  <ng-container *ngIf="cur_user==null">
+    <button (click)= "route_not_logged()">home not logged in </button> 
+    <button (click)="route_login()">login </button>
+
+  </ng-container>
+  <ng-container *ngIf="cur_user!= null">
+  <button (click)="route_logged_home()"> home logged in </button>
+  
+  <ng-container *ngIf="cur_user['admin']">
+      <button (click)="route_user_manager()"> user manager</button>
+  </ng-container>
+  <button (click)="logout_current_user()" > logout </button>
+  </ng-container>
+  
+</div>
+
+
+<router-outlet></router-outlet>
+<div>
+  <h3> footer and troubleshooting area</h3>
+  <button (click)="check_logged_in()" > checked logged in and redirect route</button>
+</div>

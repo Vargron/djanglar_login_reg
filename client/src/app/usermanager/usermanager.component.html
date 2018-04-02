@@ -1,0 +1,69 @@
+<p>
+  usermanager works!
+</p>
+<button (click)= "get_all_users()"> grab all users</button>
+
+
+<table>
+  <tr>
+    <th> id </th>
+    <th> username</th>
+    <th> email </th>
+    <th> passhash</th>
+    <th> admin </th>
+    <th> delete</th>
+    <th>edit</th>
+  </tr>
+  <tr *ngFor="let user of users">
+    <td> {{user._id}} </td>
+    <td>{{user.username}} </td>
+    <td> {{user.email}}</td>
+    <td> {{user.passhash}}</td>
+    <td>
+      {{user.admin}}
+    </td>
+    <td>
+      <span *ngIf="user._id!=delete_user_target">
+          <button (click)=select_delete_target(user._id) >delete </button>
+      </span>
+      
+      <span *ngIf="user._id==delete_user_target">
+         <button (click)="delete_target_user(user._id)">yes</button>
+         <button (click)="select_delete_target(-100)">no</button>
+      </span>
+    </td>
+    <td>
+      
+          <button (click)="select_edit_target(user._id)">edit</button>
+      
+      
+    </td>
+
+  </tr>
+</table>
+
+<form *ngIf="edit_user_target!=-100">
+  <label>_id</label>
+  <p>{{edit_user_form._id}}</p>
+  <label> username:  </label>
+  <input type="text" name="username" [(ngModel)]="edit_user_form.username">
+  <label>email: </label>
+  <input type="text" name="email" [(ngModel)]="edit_user_form.email">
+  <label> password:</label>
+  <input type="text" name="password" [(ngModel)]="edit_user_form.password">
+  <label>password confirm:</label>
+  <input type="text" name="passwordc" [(ngModel)]="edit_user_form.passwordc">
+
+  <button (click)="execute_edit_user()"> edit</button>
+  <button (click)="select_edit_target(-100)">cancel</button>
+</form>
+<div *ngIf="edit_errors.length > 0">
+  
+  <p *ngFor="let e of edit_errors">{{e}}</p>
+
+</div>
+{{users|json}}
+{{delete_user_target|json}}
+
+{{edit_user_target|json}}
+{{edit_user_form|json}}
