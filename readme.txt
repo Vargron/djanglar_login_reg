@@ -7,6 +7,7 @@ django rest framework
 this will be used as a seed for future projects
 
 current state:
+as of april 1 2018 baseling login reg app done permissions work ready to be a seed for future projects
 
 as of 21 march18:
 goal for today is full login registration user manager with admin controls on the website
